@@ -3,6 +3,7 @@ result：
 {'district': {'rur': 'responded', 'sub': {'income': {'low': 'responded', 'high': 'nothing'}}, 'urb': {'previous_cus': {'no': 'responded', 'yes': 'nothing'}}}}
 
 python dt.py
+
 shannonEnt: 0.5305095811322291
 shannonEnt: 0.9402859586706309
 rur
