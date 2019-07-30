@@ -13,6 +13,7 @@ def calcShannonEnt(dataSet):  # 计算数据的熵(entropy)
     for key in labelCounts:
         prob=float(labelCounts[key])/numEntries # 计算单个类的熵值
         shannonEnt-=prob*log(prob,2) # 累加每个类的熵值
+        print("shannonEnt:",shannonEnt)
     return shannonEnt
 
 def createDataSet1():    # 创造示例数据
@@ -53,10 +54,14 @@ def chooseBestFeatureToSplit(dataSet):  # 选择最优的分类特征
         uniqueVals = set(featList)
         newEntropy = 0
         for value in uniqueVals:
+            print(value)
             subDataSet = splitDataSet(dataSet,i,value)
             prob =len(subDataSet)/float(len(dataSet))
             newEntropy +=prob*calcShannonEnt(subDataSet)  # 按特征分类后的熵
         infoGain = baseEntropy - newEntropy  # 原始熵与按特征分类后的熵的差值
+        print("base:",baseEntropy)
+        print("new:",newEntropy)
+        print("infoGain:",infoGain)
         if (infoGain>bestInfoGain):   # 若按某特征划分后，熵值减少的最大，则次特征为最优分类特征
             bestInfoGain=infoGain
             bestFeature = i
@@ -74,6 +79,7 @@ def majorityCnt(classList):    #按分类后类别数量排序，比如：最后
 def createTree(dataSet,labels):
     classList=[example[-1] for example in dataSet]  # 类别：responded or nothing
     if classList.count(classList[0])==len(classList):
+        print(classList[0])
         return classList[0]
     if len(dataSet[0])==1:
         return majorityCnt(classList)
